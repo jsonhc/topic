@@ -1,0 +1,21 @@
+name: Build and Push image
+on:
+  push:
+    branches:
+    - 'master'
+jobs:
+  Trivy-Scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+        
+      - name: Run Trivy vulnerability scanner in repo mode
+        id: scan_vulnerability
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          ignore-unfixed: true
+          output: 'trivy-results.txt'
+          severity: 'HIGH,CRITICAL'
