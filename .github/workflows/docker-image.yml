@@ -24,10 +24,7 @@ jobs:
         uses: qcastel/github-actions-maven-cmd@master
         with:
           maven-args: "-DskipTests clean install"
-
-      - name: test war
-        run: ls -l target
-        
+      
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -40,9 +37,5 @@ jobs:
           username: "jsonhcstart"
           password: "HHq123456*"
 
-      - name: Build and Push container images
-        uses: docker/build-push-action@v4.0.0
-        id: build-and-push
-        with:
-          push: true
-          tags: jsonhcstart/topic:${{ github.sha }}
+      - name: test war
+        run: ls -l target
