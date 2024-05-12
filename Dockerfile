@@ -4,7 +4,7 @@ ENV MYPATH /usr/local/tomcat
 
 WORKDIR $MYPATH
 
-ADD ./target/blog-.*-SNAPSHOT.war $MYPATH/webapps
+ADD ./target/blog-1.0-SNAPSHOT.war $MYPATH/webapps
 
 ENTRYPOINT ["catalina.sh","run"]
 
