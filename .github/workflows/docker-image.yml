@@ -38,7 +38,7 @@ jobs:
           password: "HHq123456*"
 
       - name: test war
-        run: ls -l target
+        run: ls -l && ls -l target
 
       - name: Build and Push container images
         uses: docker/build-push-action@v4.0.0
