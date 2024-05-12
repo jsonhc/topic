@@ -26,7 +26,7 @@ jobs:
           maven-args: "-DskipTests clean install"
 
       - name: test war
-        run: ls -l
+        run: ls -l target
         
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
