@@ -43,7 +43,7 @@ jobs:
         run: ls -l && ls -l target
 
       - name: Build and Push container images
-        uses: docker/build-push-action@v5.0.0
+        uses: docker/build-push-action@v3
         id: build-and-push
         with:
           push: true
