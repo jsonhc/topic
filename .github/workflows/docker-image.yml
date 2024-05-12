@@ -20,21 +20,7 @@ jobs:
           output: 'trivy-results.txt'
           severity: 'HIGH,CRITICAL'
       
-      - name: Slack Notification when trivy fails
-        if: success() && job.steps.scan_vulnerability.status == failure()
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_CHANNEL: "jsonhc"
-          SLACK_COLOR: "failure"
-          SLACK_MESSAGE: "Failed trivy scan, see below report"
-          SLACK_TITLE: "Scan failed"
-          SLACK_USERNAME: "jsonhc"
-          SLACK_WEBHOOK: "https://hooks.slack.com/services/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"
-
-      - name: upload the trivy report
-        uses: MeilCli/slack-upload-file@v4
+      - name: Build
+        uses: qcastel/github-actions-maven-cmd@master
         with:
-          slack_token: "xoxb-7117038586977-7101470931349-XtYgMrxvbi13dxsUIEJieYLE"
-          channel_id: "C073F15LV1P"
-          file_path: '${{ github.workspace }}/trivy-results.txt'
-          initial_comment: 'upload the trivy report'
+          maven-args: "-DskipTests clean install"
