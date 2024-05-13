@@ -43,8 +43,7 @@ jobs:
         run: ls -l && ls -l target
 
       - name: Build and Push container images
-        uses: docker/build-push-action@v2
         id: build-and-push
-        with:
-          push: true
-          tags: jsonhcstart/topic:${{ github.sha }}
+        run: |
+          docker build -t jsonhcstart/topic:${{ github.sha }} .
+          docker push jsonhcstart/topic:${{ github.sha }}
