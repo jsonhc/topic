@@ -1,20 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: pandoc/latex 
     steps:
-    - uses: actions/checkout@v4
-      with:
-        ref: ${{ github.head_ref }}
-        fetch-depth: 0
-        token: ${{ secrets.PAT_TOKEN }}
-    - name: Commit files
-      run: |
-        git config --local user.email "json_hc@163.com"
-        git config --local user.name "jsonhc"
-        git commit -a -m "Add changes"
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.PAT_TOKEN }}
-        repository: jsonhc/git_test
-        force: true
+      - uses: actions/checkout@master
+      - name: creates output
+        run:  |
+          mkdir output 
+          echo "hello world" > test.json
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: 'output'
+          destination-github-username: 'jsonhc'
+          destination-repository-name: 'git_test'
+          user-email: json_hc@163.com
+          target-branch: master
