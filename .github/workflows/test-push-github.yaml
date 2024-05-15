@@ -12,7 +12,7 @@ jobs:
 
       - name: config git
         run: |
-          echo "hello world" > test.json
+          echo "hello world" > test.json1
           git config user.name "jsonhc"
           git config user.email "json_hc@163.com"
           git add .
