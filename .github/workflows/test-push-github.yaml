@@ -1,0 +1,22 @@
+name: push to github
+on:
+  push:
+    branches:
+    - 'master'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+
+      - name: push github
+        run: |
+          git clone https://github.com/jsonhc/git_test.git
+          cd git_test 
+          echo "hello world" > test.json
+          git config user.name "jsonhc"
+          git config user.email "json_hc@163.com"
+          git add .
+          git commit -m "create test.json"
+          git push --force origin master
