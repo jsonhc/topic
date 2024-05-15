@@ -21,5 +21,5 @@ jobs:
       - name: push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: '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'
+          github_token: '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'
           repository: jsonhc/git_test
