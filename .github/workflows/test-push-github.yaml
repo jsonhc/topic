@@ -12,9 +12,11 @@ jobs:
 
       - name: config git
         run: |
-          echo "hello worldxxxxxx" > test.json
           git config user.name "jsonhc"
           git config user.email "json_hc@163.com"
+          git clone https://github.com/jsonhc/git_test.git
+          cd git_test
+          echo "hello world" > test.json
           git add .
           git commit -m "create test.json"
 
