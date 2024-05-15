@@ -23,5 +23,6 @@ jobs:
           source-directory: 'output'
           destination-github-username: 'jsonhc'
           destination-repository-name: 'git_test'
+          target-directory: 'output'
           user-email: json_hc@163.com
           target-branch: master
