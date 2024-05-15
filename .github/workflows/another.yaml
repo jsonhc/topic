@@ -1,28 +1,20 @@
-name: CI
-
+name: push to github
 on:
   push:
-    branches: [ master ]
-
+    branches:
+    - 'master'
 jobs:
-  build:
+  Trivy-Scan:
     runs-on: ubuntu-latest
-    container: pandoc/latex 
     steps:
-      - uses: actions/checkout@master
-      - name: creates output
-        run:  |
-          mkdir -p output 
-          echo "hello world" > output/test.json2
-      - name: Pushes to another repository
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-directory: 'output'
-          destination-github-username: 'jsonhc'
-          destination-repository-name: 'git_test'
-          target-directory: 'output'
-          user-email: json_hc@163.com
-          target-branch: master
+      - name: Checkout code
+        uses: actions/checkout@master
+
+      - name: config git
+        run: |
+          git clone https://jsonhc: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@github.com/jsonhc/git_test.git
+          cd git_test
+          echo "hello world" > test.json111
+          git add .
+          git commit -m "create test.json111"
+          git push origin master
