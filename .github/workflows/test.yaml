@@ -2,7 +2,7 @@ name: push to github
 on:
   push:
     branches:
-    - 'master'
+    - 'main'
 jobs:
   Trivy-Scan:
     runs-on: ubuntu-latest
