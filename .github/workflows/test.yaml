@@ -16,5 +16,5 @@ jobs:
           git config user.name "jsonhc"
           git config user.email "json_hc@163.com"
           git add .
-          git commot -m "create test.json"
+          git commit -m "create test.json"
           git push --force origin master
