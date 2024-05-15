@@ -24,4 +24,4 @@ jobs:
           destination-github-username: 'jsonhc'
           destination-repository-name: 'git_test'
           user-email: json_hc@163.com
-          target-branch: main
+          target-branch: master
