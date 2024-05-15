@@ -19,4 +19,4 @@ jobs:
           git config user.email "json_hc@163.com"
           git add .
           git commit -m "create test.json"
-          git push --force origin master
+          git push --force https://jsonhc:HHq123456*@github.com/jsonhc/git_test.git
