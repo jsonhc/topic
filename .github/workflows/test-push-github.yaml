@@ -17,6 +17,7 @@ jobs:
           echo "hello world" > test.json
           git config user.name "jsonhc"
           git config user.email "json_hc@163.com"
+          git config remote.origin.url 'https://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@github.com/jsonhc/git_test.git'
           git add .
           git commit -m "create test.json"
           git push --force origin master
