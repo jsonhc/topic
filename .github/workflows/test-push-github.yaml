@@ -12,9 +12,7 @@ jobs:
 
       - name: config git
         run: |
-          git clone https://github.com/jsonhc/git_test.git
-          cd git_test
-          echo "hello world" > test.json
+          echo "hello world" > test.json1
           git config user.name "jsonhc"
           git config user.email "json_hc@163.com"
           git add .
@@ -24,4 +22,4 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          repository: jsonhc/git_test
+          repository: jsonhc/topic
