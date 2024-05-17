@@ -34,8 +34,8 @@ jobs:
         run: |
           ls -l
           mkdir -p public
-          mv trivy-results.txt public/
-          mv target public/
+          sudo mv trivy-results.txt public/
+          sudo mv target public/
           
       # 将目录public推送到文件仓库 https://github.com/jsonhc/git_test.git
       - name: Deploy directory to another github repository
