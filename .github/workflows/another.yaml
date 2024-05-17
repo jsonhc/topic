@@ -4,17 +4,27 @@ on:
     branches:
     - 'master'
 jobs:
-  Trivy-Scan:
+  deploy:
+    name: Deploy Hexo Public To Pages
     runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
+
     steps:
-      - name: Checkout code
+      # from: https://github.com/jsonhc/topic.git
+      - name: Checkout Repository master branch
         uses: actions/checkout@master
 
-      - name: config git
+      - name: push change files to github
         run: |
-          git clone https://jsonhc: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@github.com/jsonhc/git_test.git
-          cd git_test
-          echo "hello world" > test.json111
-          git add .
-          git commit -m "create test.json111"
-          git push origin master
+          mkdir public
+          echo "test" > another.json
+          
+      # 将目录public推送到文件仓库 https://github.com/jsonhc/git_test.git
+      - name: Deploy directory to another github repository
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.SSH_DEPLOY_KEY }} 
+          external_repository: jsonhc/git_test.git
+          publish_branch: master
+          publish_dir: ./public
