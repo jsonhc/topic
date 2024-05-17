@@ -17,8 +17,9 @@ jobs:
 
       - name: push change files to github
         run: |
-          mkdir public
-          echo "test" > another.json
+          ls -l
+          mkdir -p public
+          echo "test" > public/another.json
           
       # 将目录public推送到文件仓库 https://github.com/jsonhc/git_test.git
       - name: Deploy directory to another github repository
