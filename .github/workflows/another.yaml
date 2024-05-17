@@ -15,11 +15,27 @@ jobs:
       - name: Checkout Repository master branch
         uses: actions/checkout@master
 
+      - name: Run Trivy vulnerability scanner in repo mode
+        id: scan_vulnerability
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          ignore-unfixed: true
+          output: 'trivy-results.txt'
+          severity: 'HIGH,CRITICAL'
+
+      - name: Build
+        uses: qcastel/github-actions-maven-cmd@master
+        with:
+          maven-args: "-DskipTests clean install"
+
       - name: push change files to github
         run: |
           ls -l
           mkdir -p public
-          echo "test" > public/another.json
+          mv trivy-results.txt public/
+          mv target public/
           
       # 将目录public推送到文件仓库 https://github.com/jsonhc/git_test.git
       - name: Deploy directory to another github repository
